@@ -138,7 +138,7 @@ my $stweet =  ' style="clear:both"';
 
 
 sub plugin {
-    return MT->component('TweetBacks');
+    return MT->component('MyTweets');
 }
 #### debug modes..
 ### Tal vez estos modos se puedan utilizar para otros propositos.... el tiempo lo dira
