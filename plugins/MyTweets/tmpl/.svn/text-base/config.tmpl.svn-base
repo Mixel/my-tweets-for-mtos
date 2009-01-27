@@ -1,0 +1,41 @@
+<mt:setvarblock name="page_title">TweetsBacks</mt:setvarblock>
+<mt:setvar name="position_actions_bottom" value="1">
+<mt:include name="include/header.tmpl">
+
+
+<p>
+ this is fla
+</p>    
+<fieldset>
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+<input type="hidden" id="_save" name="_save" value="1" />
+<input type="hidden" id="__mode" name="__mode" value="tweetbacks_config" />
+
+<mtapp:setting
+  id="tbmax"
+  label="Max TweetsBacks in your entry"
+  hint="Enter any value you want here."
+  show_hint="1">
+   <select name="tbmax" id="tbmax" value="<mt:var name="tbmax">">
+  <mt:loop name="tbmax_">
+            <option value="<mt:var name="key">"<mt:if name="selected"> selected="selected"</mt:if>><mt:var name="key"></option>
+  </mt:loop>
+</select>
+</mtapp:setting>
+
+
+<mt:setvarblock name="action_buttons">
+    <button
+        type="submit"
+        accesskey="s"
+        title="Continue (s)"
+        class="primary-button">Continue</button>
+</mt:setvarblock>
+<mt:include name="include/actions_bar.tmpl" bar_position="bottom" 
+    hide_pager="1" settings_bar="1">
+
+</form>
+</fieldset>
+
+<mt:include name="include/footer.tmpl">

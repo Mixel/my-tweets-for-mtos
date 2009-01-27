@@ -1,0 +1,49 @@
+name: TweetBacks
+id: TweetBacks
+key: TweetBacks
+author_link: http://mixelandia.com/
+author_name: Mixel Adm
+description: TweetBacks
+version: 0.1
+plugin_link: http://mixelandia.com/
+
+tags:
+  function: 
+     TweetBacks: $TweetBacks::TweetBacks::Plugin::tb
+     TweetBacksStats: $TweetBacks::TweetBacks::Plugin::tbs
+  
+applications:
+    cms:
+        methods:
+            tweetbacks_config: $TweetBacks::TweetBacks::Plugin::tbconfig
+        menus:
+            prefs:tweetbacks:
+                label: 'TweetBacks'
+                mode: 'tweetbacks_config'
+                order: 204
+                args:  
+                view: blog
+
+
+ 
+settings:
+  tbcountonly:
+    default: "false"
+    scope: blog
+  tbmax:
+    default: "0"
+    scope: blog
+  tbavatar:
+    default: "false"
+    scope: blog
+  tbcount:
+    default: "false"
+    scope: blog
+  tbstats:
+    default: "false"
+    scope: blog
+  tbblockedusers:
+    default: ""
+    scope: blog
+
+ 

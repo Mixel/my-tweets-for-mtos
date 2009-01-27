@@ -1,0 +1,49 @@
+package TweetBacks::Plugin;
+use strict;
+
+sub tb{
+my $salida = '<script src="http://danzarrella.com/tb.js?"></script>';
+
+return $salida;
+}
+
+sub tbs{
+ my $salida = '<script src="http://danzarrella.com/tsjs.php"></script>';
+}
+
+
+
+sub tbconfig{
+ my $app = shift;  
+ my $blog_id = $app->{query}->param('blog_id') or die();
+ my $plugin = plugin();
+ save_config($plugin,$app->{query},$blog_id) if($app->{query}->param('_save'));
+ my $params = $plugin->get_config_hash("blog:$blog_id");
+ $params->{tbmax_} = maxs($params->{tbmax});
+ MT->log( $params->{tbmax});
+ my $tmpl = $plugin->load_tmpl('config.tmpl') ;
+ return $app->build_page( $tmpl,$params ) or  $app->error('Error loading TweetBacks config');
+}
+
+sub maxs{
+ my ($max) = @_;
+ my @s;
+ foreach my $x (qw (0 1 2 3 4 5 6 7 8 9 10 15 20 25 30 40 50 100)){
+   push(@s,{key=> $x, selected => ($x eq $max)});
+ }
+ return \@s;
+}
+
+sub save_config{
+ my ($plugin,$params,$blog) = @_;
+ foreach my $key (qw (tbmax)){
+     $plugin->set_config_value($key, $params->param($key),"blog:$blog");
+ }
+}
+
+
+sub plugin {
+    return MT->component('TweetBacks');
+}
+
+1;

@@ -14,7 +14,6 @@ sub init {
         shorturls => \&_short_urls,
         twitter => \&_twitter_search,
     );
-#     $app->{default_mode} = '';
     $app->init_core_callbacks();
 }
 
@@ -32,9 +31,6 @@ sub mode_default {
   my $app = shift;
 
   $url = $ENV{HTTP_REFERER} ||$app->param('url')|| die('No url :(');
-#  $url = 'http://danzarrella.com/update-to-tweetsuite.html';
-#  $url = encode_url($url);
-#  return $url;
   my $res = todas();
 #    return Dumper($res);
   return CreaHtml($res->{results},$app);

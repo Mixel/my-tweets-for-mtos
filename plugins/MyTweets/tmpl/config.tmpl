@@ -1,0 +1,128 @@
+<mt:setvarblock name="page_title">My Tweets Settings</mt:setvarblock>
+<mt:setvar name="position_actions_bottom" value="1">
+<$mt:setvar name="entries" value="1"$>
+<mt:setvarblock name="system_msg">
+    <mt:if name="saved">
+        <mtapp:statusmsg
+            id="saved"
+            class="success">
+            <__trans phrase="Your preferences have been saved.">
+        </mtapp:statusmsg>
+    </mt:if>
+</mt:setvarblock>
+
+<mt:include name="include/header.tmpl">
+
+
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="magic_token" value="<mt:var name="magic_token">" />
+<input type="hidden" id="_save" name="_save" value="1" />
+<input type="hidden" id="__mode" name="__mode" value="mytweets_save" />
+<h2>General settings</h2>
+<mtapp:setting
+  id="tbcountonly"
+  label="Display only the number of tweets"
+  hint="Show only the number of tweets the page has recieved, not the tweets themselves."
+  show_hint="1">
+   <select name="tbcountonly" id="tbcountonly" >
+   <option value="false">False</option>
+   <option value="true"<mt:if name="tbcountonly" eq="true"> selected="selected"</mt:if>>True</option>
+</select>
+</mtapp:setting>
+
+<mtapp:setting
+  id="tbmax"
+  label="Max TweetsBacks"
+  hint="The max number of TweetBacks in your entry."
+  show_hint="1"
+  >
+   <select name="tbmax" id="tbmax">
+  <mt:loop name="tbmax_">
+            <option value="<mt:var name="key">"<mt:if name="selected"> selected="selected"</mt:if>><mt:var name="key"></option>
+  </mt:loop>
+</select>
+</mtapp:setting>
+
+
+<mtapp:setting
+  id="tbavatar"
+  label="Avatars"
+  hint="Use Twitter Avatars."
+  show_hint="1">
+   <select name="tbavatar" id="tbavatar">
+   <option value="false">False</option>
+   <option value="true"<mt:if name="tbavatar" eq="true"> selected="selected"</mt:if>>True</option>
+</select>
+</mtapp:setting>
+
+<mtapp:setting
+  id="tbstyling"
+  label="TweetBacks CSS Style"
+  hint="Use the default CSS styles as provided by Tweetbacks."
+  show_hint="1">
+   <select name="tbstyling" id="tbstyling">
+   <option value="false">False</option>
+   <option value="true"<mt:if name="tbstyling" eq="true"> selected="selected"</mt:if>>True</option>
+</select>
+</mtapp:setting>
+
+
+<mtapp:setting
+  id="tbcount"
+  label="Display number of tweets"
+  hint="Show the number of tweets above the list of tweets for a page."
+  show_hint="1">
+   <select name="tbcount" id="tbcount">
+   <option value="false">False</option>
+   <option value="true"<mt:if name="tbcount" eq="true"> selected="selected"</mt:if>>True</option>
+</select>
+</mtapp:setting>
+
+
+<mtapp:setting
+  id="tbstats"
+  label="Collect statistics on tweets."
+  hint="If enable, Tweetbacks will collect statistics for the Stats Tag."
+  show_hint="1">
+   <select name="tbstats" id="tbstats">
+   <option value="false">False</option>
+   <option value="true"<mt:if name="tbstats" eq="true"> selected="selected"</mt:if>>True</option>
+</select>
+</mtapp:setting>
+
+<mtapp:setting
+  id="tbblockedusers"
+  label="Blocked users"
+  hint="Twitter users listed here will be filtered from the tweets shown. Seperate user names with the <strong>+</strong> sign."
+  show_hint="1">
+   <input type="text" name="tbblockedusers" id="tbblockedusers" value="<mt:var name="tbblockedusers">" />
+   
+</mtapp:setting>
+<h2>Statistics settings</h2>
+<mtapp:setting
+  id="tbmaxstats"
+  label="Max Pages Listed"
+  hint="The max number of pages listed in the statistics."
+  show_hint="1"
+  >
+  <select name="tbmaxstats" id="tbmaxstats">
+  <mt:loop name="tbmaxstats_">
+            <option value="<mt:var name="key">"<mt:if name="selected"> selected="selected"</mt:if>><mt:var name="key"></option>
+  </mt:loop>
+</select>
+</mtapp:setting>
+
+<mt:setvarblock name="action_buttons">
+    <button
+        type="submit"
+        accesskey="s"
+        title="Save (s)"
+        class="primary-button">Save</button>
+</mt:setvarblock>
+<mt:include name="include/actions_bar.tmpl" bar_position="bottom" 
+    hide_pager="1" settings_bar="1">
+
+</form>
+
+
+<mt:include name="include/footer.tmpl">

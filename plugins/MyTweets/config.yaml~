@@ -1,0 +1,54 @@
+name: MyTweets
+id: MyTweets
+key: MyTweets
+author_link: http://mixelandia.com/
+author_name: Mixel Adm
+description: MyTweets is a pugin allowing you to show Twitter posts which refer to pages on your MT website with a template tag on those pages.<br /> It also provides a tag for showing the pages with the most referring tweets. 
+version: 1.0
+plugin_link: http://mixelandia.com/plugins/plugin-mytweets.php
+applications:
+   
+applications:
+    MyTweets:
+        cgi_base: mt-tweets
+    cms:
+        methods:
+                mytweets_config: $MyTweets::MyTweets::Plugin::tbconfig
+                mytweets_save: $MyTweets::MyTweets::Plugin::tbsave
+        menus:
+            prefs:MyTweets:
+                label: 'MyTweets'
+                mode: 'mytweets_config'
+                order: 204                   
+                view: blog
+tags:
+  function: 
+    MyTweets: $MyTweets::MyTweets::Plugin::tb
+    MyTweetsStats: $MyTweets::MyTweets::Plugin::tbs 
+
+settings:
+  tbcountonly:
+    default: "false"
+    scope: blog
+  tbmax:
+    default: "10"
+    scope: blog
+  tbavatar:
+    default: "false"
+    scope: blog
+  tbcount:
+    default: "false"
+    scope: blog
+  tbstats:
+    default: "false"
+    scope: blog
+  tbblockedusers:
+    default: ""
+    scope: blog
+  tbstyling:
+    default: "false"
+    scope: blog
+  tbmaxstats: 
+    default: "10"
+    scope: blog
+ 
