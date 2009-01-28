@@ -33,7 +33,18 @@ sub mode_default {
   $url = $ENV{HTTP_REFERER} ||$app->param('url')|| die('No url :(');
   my $res = todas();
 #    return Dumper($res);
-  return CreaHtml($res->{results},$app);
+  
+  
+# #  my $pkg = '$MyTweets::MT::MyTweets';
+#   eval "use ${pkg}";
+#   my $x= ${pkg}->new();
+#   return Dumper($pkg);
+#  return $pkg ;
+ use MT::MyTweets;
+ my $fla = MT::MyTweets->new();
+ $fla->url($url);
+ return Dumper($fla);
+return CreaHtml($res->{results},$app);
 #return Dumper($fla->{results}); #$fla->{results}
 }
 
